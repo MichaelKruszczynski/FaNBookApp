@@ -9,14 +9,72 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
+
+import javax.xml.validation.Validator;
+
 import app.mk.FaNBook.model.Comment;
 import app.mk.FaNBook.network.CreateNewCommentRequest;
 import app.mk.FaNBook.network.InternetActivity;
 
 public class CreateNewCommentActivity extends InternetActivity {
 
+    @Email  (message = "You need to inser email address")
+    private EditText getAuthorEditText;
+
+    @NotEmpty (message = "You need to add comment")
+    private EditText getCommentEditText;
+
+    Validator validator = new Validator (this);
+
     private EditText authorEditText;
     private EditText commentEditText;
+
+    validator.setValidationListener(new Validator.ValidationListener) {
+
+        @Override
+        public void onValidationSucceeded(){
+
+            Comment newComment = new Comment(0, "wewewewe","", authorEditText.getText().toString(), commentEditText.getText().toString());
+
+            CreateNewCommentRequest createNewCommentRequest = new CreateNewCommentRequest(newComment);
+
+            spiceManager.execute(createNewCommentRequest, new RequestListener<Comment>(){
+
+                @Override
+                public  void onRequestFailure(SpiceException spiceException) {
+
+                    Toast.makeText(CreateNewCommentActivity.this, "Error!!", Toast.LENGTH_SHORT.show());
+                }
+
+                @Override
+                public void onRequestSuccess(Comment comment) {
+
+                    finish();
+                }
+
+            });
+        }
+
+                @Override
+                public void onValidationFailed(List<ValidationError> errors) {
+                    for (ValidationError error : errors) {
+                        View view = error.getView();
+                        String message = error.getCollatedErrorMessage(CreateNewCommentActivity.this);
+
+                        // Display error messages ;)
+                        if (view instanceof EditText) {
+                            ((EditText) view).setError(message);
+                        } else {
+                            Toast.makeText(CreateNewCommentActivity.this, message, Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +97,7 @@ public class CreateNewCommentActivity extends InternetActivity {
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem menu) {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
@@ -52,24 +110,8 @@ public class CreateNewCommentActivity extends InternetActivity {
     }
     public  void onSendClick(View view) {
 
-        Comment newComment = new Comment(0, "wewewewe","", authorEditText.getText().toString(), commentEditText.getText().toString());
+    validator.validate();
 
-        CreateNewCommentRequest createNewCommentRequest = new CreateNewCommentRequest(newComment);
 
-        spiceManager.execute(createNewCommentRequest, new RequestListener<Comment>(){
-
-            @Override
-            public  void onRequestFailure(SpiceException spiceException) {
-
-                Toast.makeText(CreateNewCommentActivity.this, "Error!!", Toast.LENGTH_SHORT.show());
-            }
-
-                @Override
-                        public void onRequestSuccess(Comment comment) {
-
-                        finish();
-                }
-
-        });
     }
 }

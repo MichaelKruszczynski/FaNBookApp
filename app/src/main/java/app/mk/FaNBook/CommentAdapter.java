@@ -22,10 +22,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
         commentList = new Comment.List();
 
-        commentList.add(new Comment(0,"eeewesdsdde","3.02.1985","wqwqw","dsdsd"));
-        commentList.add(new Comment(1,"eedde","3.02.1985","wqwqw","dsdsd"));
-        commentList.add(new Comment(2,"eedfffde","3.02.1985","wqwqw","dsdsd"));
-        commentList.add(new Comment(3,"ee33dde","3.02.1985","wqwqw","dsdsd"));
 
 
     }
@@ -65,5 +61,13 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
             commentTextView = (TextView) itemView.findViewById(R.id.commentTextView);
 
             }
+        }
+
+        public void addNewComments (Comment.List newComments) {
+        commentList.clear();
+        commentList.addAll(newComments);
+        notifyDataSetChanged();
+
+
         }
     }
