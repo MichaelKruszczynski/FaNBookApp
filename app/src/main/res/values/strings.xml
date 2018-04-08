@@ -23,10 +23,12 @@
     <string name="title_activity_search">SearchActivity</string>
 
     <string name="search">Search</string>
-    <string name="scanner">Scanner</string>
+
     <string name="ok_next">OK, NEXT</string>
     <string name="read_books">Read books</string>
     <string name="author">Author</string>
     <string name="comment">comment</string>
     <string name="send">send</string>
+    <string name="scanner">Scanner</string>
+    <string name="about_application">About Application</string>
 </resources>

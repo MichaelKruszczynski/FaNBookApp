@@ -22,11 +22,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
         commentList = new Comment.List();
 
-
-
     }
-
-
     @Override
     public CommentViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 

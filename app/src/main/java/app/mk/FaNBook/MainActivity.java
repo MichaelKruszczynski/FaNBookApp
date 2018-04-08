@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +20,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends AppCompatActivity
         implements app.mk.FaNBook.NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -118,8 +119,8 @@ public class MainActivity extends ActionBarActivity
             integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
             integrator.setPrompt("Scan a barcode form the book");
             integrator.setCameraId(0);  // Use a specific camera of the device
-            integrator.setBeepEnabled(false);
-            integrator.setBarcodeImageEnabled(true);
+            //integrator.setBeepEnabled(false);
+            //integrator.setBarcodeImageEnabled(true);
             integrator.initiateScan();
 
             return true;
@@ -147,7 +148,7 @@ public class MainActivity extends ActionBarActivity
             }
 
             // At this point we may or may not have a reference to the activity
-            Toast.makeText(this, toast, Toast.LENGTH_SHORT.show());
+            Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,12 +1,15 @@
 package app.mk.FaNBook.network;
 
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+
+import com.octo.android.robospice.SpiceManager;
 
 /**
  * Created by Michael Kruszczynski on 08/04/2018.
  */
 
-public class InternetActivity extends ActionBarActivity {
+public class InternetActivity extends AppCompatActivity {
 
     //------------------------------------------------------------------------
 //this block can be pushed up into a common base class for all activities

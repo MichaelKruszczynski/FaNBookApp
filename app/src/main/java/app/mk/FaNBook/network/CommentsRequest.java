@@ -6,11 +6,11 @@ import org.w3c.dom.Comment;
  * Created by Michael Kruszczynski on 08/04/2018.
  */
 
-public class CommentsRequest extends RetrofitSpiceRequest <Comment.List, ApiInterface>{
+public class CommentsRequest extends RetrofitSpiceRequest<Comment.List, ApiInterface>{
 
 
     public  CommentsRequest() {
-        super(Comment.List.class, ApiInterface.classi);
+        super(Comment.List.class, ApiInterface.class);
     }
 
     @Override

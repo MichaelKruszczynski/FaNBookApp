@@ -11,10 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
+
 import app.mk.FaNBook.MainActivity;
 import app.mk.FaNBook.R;
 import app.mk.FaNBook.model.Comment;
 import app.mk.FaNBook.network.CommentsRequest;
+import app.mk.FaNBook.network.InternetFragment;
 
 /**
  * Created by Michael Kruszczynski on 07/04/2018.
@@ -24,7 +28,7 @@ import app.mk.FaNBook.network.CommentsRequest;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainFragment extends IntentFragment {
+public class MainFragment extends InternetFragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -49,22 +53,16 @@ public class MainFragment extends IntentFragment {
     public MainFragment() {
     }
 
-
-
-
     @Override
    public void onStart() {
         super.onStart();
 
-
         CommentsRequest commentsRequest = new CommentsRequest();
-
-        spiceManager.execute(commentsRequest, new RequestListener<Comment.List()> {
+        spiceManager.execute(commentsRequest, new RequestListener<Comment.List>() {
 
         @Override
         public void onRequestFailure (SpiceException spiceException){
-            Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT.show());
-
+            Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show()
         }
 
         @Override
