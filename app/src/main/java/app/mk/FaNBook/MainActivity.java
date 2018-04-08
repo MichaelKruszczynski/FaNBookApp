@@ -13,6 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 public class MainActivity extends ActionBarActivity
@@ -109,12 +113,42 @@ public class MainActivity extends ActionBarActivity
             return true;
         } else if (id == R.id.action_scanner) {
 
-            return true;
-        }
 
+            IntentIntegrator integrator = new IntentIntegrator(this);
+            integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+            integrator.setPrompt("Scan a barcode form the book");
+            integrator.setCameraId(0);  // Use a specific camera of the device
+            integrator.setBeepEnabled(false);
+            integrator.setBarcodeImageEnabled(true);
+            integrator.initiateScan();
+
+            return true;
+
+        } else if (id == R.id.action_new) {
+
+            Intent intent = new Intent(this, CreateNewCommentActivity.class);
+
+            startActivity(intent);
+            return true;
+    }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
 
+            String toast;
+            if(result.getContents() == null) {
+                toast = "Cancelled from fragment";
+            } else {
+                toast = "Scanned from fragment: " + result.getContents();
+            }
+
+            // At this point we may or may not have a reference to the activity
+            Toast.makeText(this, toast, Toast.LENGTH_SHORT.show());
+        }
+    }
 
 }
