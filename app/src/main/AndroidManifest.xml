@@ -28,6 +28,13 @@
             android:name="app.mk.FaNBook.SearchActivity"
             android:label="SearchActivity" >
         </activity>
+
+
+        <service
+            android:name=".network.ApiService"></service>
+
     </application>
+
+
 
 </manifest>

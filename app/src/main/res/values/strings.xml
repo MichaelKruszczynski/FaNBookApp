@@ -24,4 +24,6 @@
 
     <string name="search">Search</string>
     <string name="scanner">Scanner</string>
+    <string name="ok_next">OK, NEXT</string>
+    <string name="read_books">Read books</string>
 </resources>

@@ -16,7 +16,7 @@ public class GuideActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_tutorial);
+        setContentView(R.layout.activity_guide);
     }
 
     public void onNextClick(View view) {

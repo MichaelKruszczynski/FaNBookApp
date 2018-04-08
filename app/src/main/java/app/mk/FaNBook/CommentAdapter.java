@@ -1,6 +1,7 @@
 package app.mk.FaNBook;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,12 +32,19 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
 
     @Override
-    public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+    public CommentViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.comment_row,viewGroup, false);
+        return new CommentViewHolder(view) ;
     }
 
     @Override
-    public void onBindViewHolder(CommentViewHolder holder, int position) {
+    public void onBindViewHolder(CommentViewHolder commentViewHolder, int i) {
+        Comment comment = commentList.get(i);
+
+        commentViewHolder.nameTextView.setText(comment.author);
+        commentViewHolder.dateTextView.setText(comment.date);
+        commentViewHolder.commentTextView.setText(comment.comment);
 
     }
 

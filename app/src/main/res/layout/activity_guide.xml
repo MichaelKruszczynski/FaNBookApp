@@ -18,19 +18,20 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_book"/>
+            android:src="@drawable/ic_library_books_blue_400_48dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:text="Read books"/>
+            android:text="@string/read_books"
+            android:layout_marginStart="20dp" />
     </LinearLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OK, NEXT"
+        android:text="@string/ok_next"
         android:onClick="onNextClick"/>
 
 </LinearLayout>
